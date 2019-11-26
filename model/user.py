@@ -1,0 +1,65 @@
+from model.base import Base
+
+
+class UserModel(Base):
+
+    def __init__(self):
+
+        super(UserModel, self).__init__()
+        self.table_name = "USERS"
+        # self.create()
+
+    def create(self, *args, **kwargs):
+        """
+        Create table users
+        """
+        command = """
+        CREATE TABLE USERS (
+            user_id serial PRIMARY KEY,
+            username varchar(30) UNIQUE NOT NULL,
+            password varchar(16) NOT NULL,
+            usertype integer NOT NULL,
+            email varchar(30) UNIQUE NOT NULL,
+        )
+        """
+        self.execute(command)
+
+    def insert(self, *args, **kwargs):
+
+        command = """
+        INSERT INTO users (
+            username, password, email, usertype)
+            values ('{}', '{}', '{}', '{}' )  
+        """.format(*args)
+        self.execute(command)
+
+    def update(self, *args, **kwargs):
+
+        raise NotImplementedError
+
+    def delete(self, *args, **kwargs):
+
+        raise NotImplementedError
+
+    def read(self, *args, **kwargs):
+
+        raise NotImplementedError
+
+
+userModel = UserModel()
+
+
+def create_user(username, password, email, usertype):
+
+    userModel.insert(username, password, email, usertype)
+    user = get_user(email, password)
+    return user
+
+
+def get_user(email, password):
+    command = """
+    SELECT * FROM USERS WHERE email = '{}' and password = '{}'
+    """.format(email, password)
+    user = userModel.execute(command)
+    return None if user is None or len(user) == 0 else user[0]
+
