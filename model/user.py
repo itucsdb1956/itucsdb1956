@@ -19,7 +19,7 @@ class UserModel(Base):
             username varchar(30) UNIQUE ,
             password varchar(16) NOT NULL,
             usertype integer NOT NULL,
-            email varchar(30) UNIQUE NOT NULL,
+            email varchar(30) UNIQUE NOT NULL
         )
         """
         self.execute(command)
@@ -27,9 +27,9 @@ class UserModel(Base):
     def insert(self, *args, **kwargs):
 
         command = """
-        INSERT INTO users (
-            username, password, email, usertype)
-            values ('{}', '{}', '{}', '{}' )  
+        INSERT INTO USERS 
+         (username, password, email, usertype)
+            VALUES ('{}', '{}', '{}', '{}' )  
         """.format(*args)
         self.execute(command)
 
@@ -65,5 +65,9 @@ def get_user(email, password):
     SELECT * FROM USERS WHERE email = '{}' and password = '{}'
     """.format(email, password)
     user = userModel.execute(command)
+    print("model:", user)
     return None if user is None or len(user) == 0 else user[0]
 
+
+def createUserTable():
+    return userModel.create()

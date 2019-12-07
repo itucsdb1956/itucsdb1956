@@ -2,9 +2,10 @@ from flask import Blueprint
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 
 from endpoints.utils import *
-from model.user import get_user, create_user,getUserId
+from model.user import get_user, create_user, getUserId
 from model.address import createAddress, getAddressId
 from model.customer import createCustomer
+from model.firm  import createFirm
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -15,14 +16,14 @@ def login():
             return redirect(url_for("user.feed"))
         return render_template("auth/login.html")
 
-
-
     print("login")
-    user = get_user(request.form["email"], request.form["password"])
-    print(request.form["email"], request.form["password"])
+    usermail = request.form["email"]
+    password = request.form["password"]
+    user = get_user(usermail, password)
+    print(user)
     if user is not None:
         session["logged_in"] = user
-        return redirect(user.feed)
+        return redirect(url_for("user.feed"))
     else:
         return render_template("auth/login.html", msg="Wrong password or email address try again!")
 
@@ -47,6 +48,7 @@ def signUp(*args, **kwargs):
 
     username = request.form["username"]
     password = request.form["password"]
+    print(password)
     usertype = 0
     email    = request.form["email"]
 
@@ -75,28 +77,48 @@ def signUp(*args, **kwargs):
 
     if NewUser is None:
         return render_template("auth/signUp.html", msg="Record process is not done.", **kwargs)
-    return redirect(url_for("feed"))
+    return redirect(url_for("user.feed"))
 
 
 @auth.route("/firmSignUp", methods=["GET", "POST"])
 @view
-def firmsignUp(*args, **kwargs):
+def firmSignUp(*args, **kwargs):
 
     if "logged_in" in session:
         return redirect(url_for("user.feed"))
     if request.method == "GET":
         return render_template("auth/firmSignUp.html", **kwargs)
 
-    username = request.form["username"]
+
     password = request.form["password"]
+    firm     = request.form["First_Name"]
     usertype = 1
     email    = request.form["email"]
 
+    phone     = request.form["Mobile_Number"]
+    locality  = request.form["Locality"]
+    street    = request.form["Street"]
+    building  = request.form["Building"]
+    apartment = request.form["Apartment"]
+    city      = request.form["City"]
+    postcode  = request.form["Pin_Code"]
+    tax       = request.form["Tax_Number"]
+    country   = request.form["Country"]
 
 
-    NewUser = create_user(username,password,email,usertype)
+    NewAddress  = createAddress(street,building,apartment,locality,city,postcode)
+    print(NewAddress)
 
+    adressid    =  getAddressId(street,building,apartment,locality,city,postcode)
+
+    NewUser = create_user(firm, password, email, usertype)
+    print(NewUser)
+    userid = getUserId(firm, password, email, usertype)
+
+    NewFirm = createFirm(firm, adressid, userid, phone)
+
+    print(NewFirm)
     if NewUser is None:
         return render_template("auth/firmSignUp.html", msg="Record process is not done.", **kwargs)
-    return redirect(url_for("feed"))
+    return redirect(url_for("user.feed"))
 

@@ -15,14 +15,14 @@ class OrderModel(Base):
             customer_order_id integer NOT NULL,
             FOREIGN KEY (customer_order_id) REFERENCES CUSTOMERS(customer_id) ON UPDATE CASCADE,
             FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) ON UPDATE CASCADE
-            );
+            )
         """
         self.execute(command)
     def insert(self,*args,**kwargs):
         command = """
         INSERT INTO ORDERS(product_id,customer_order_id)
         VALUES ('{}','{}')
-        );""".format(*args)
+        """.format(*args)
         self.execute(command)
 
     def update(self,*args,**kwargs):
@@ -60,6 +60,14 @@ def updateOrder(id,product_id,customer_order_id):
     UPDATE ORDERS SET order_id='{}',product_id='{}',customer_order_id='{}'
     """.format(id,product_id,customer_order_id)
     return orderModel.execute(command)
+
+def drop():
+    command = """
+        DELETE FROM ORDERS"""
+    return orderModel.execute(command)
+
+def createOrderTable():
+    return orderModel.create()
 
 
 

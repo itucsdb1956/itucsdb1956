@@ -23,8 +23,10 @@ app.register_blueprint(customer)
 app.register_blueprint(product)
 app.register_blueprint(order)
 
-#app.secret_key = "1234"
+app.secret_key = "super secret key"
 
 if __name__ == "__main__":
     # port = app.config.get("PORT", 5000)
+    if session:
+        session.clear()
     app.run(debug=True)

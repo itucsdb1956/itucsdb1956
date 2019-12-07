@@ -7,7 +7,7 @@ class AddressModel(Base):
         super(AddressModel, self).__init__()
         self.table_name = "ADDRESSES"
 
-    def create(self,*args,**kwargs):
+    def create(self, *args, **kwargs):
 
         command = """CREATE TABLE IF NOT EXISTS ADDRESSES(
             address_id serial PRIMARY KEY,
@@ -17,15 +17,15 @@ class AddressModel(Base):
             locality_name varchar(50) NOT NULL,
             city varchar(30) NOT NULL,
             postcode integer
-            );
+            )
         """
         self.execute(command)
     def insert(self,*args,**kwargs):
         command ="""
         INSERT INTO ADDRESSES(street_name,building_no,
-        apartment_no,locality_name,city)
+        apartment_no,locality_name,city,postcode)
         VALUES ('{}','{}','{}','{}','{}','{}')
-        );""".format(*args)
+        """.format(*args)
         self.execute(command)
     def update(self,*args,**kwargs):
 
@@ -33,7 +33,7 @@ class AddressModel(Base):
     def delete(self,id):
 
         #args ye bak
-        command="""
+        command = """
         DELETE FROM ADDRESSES where id = {}""".format(id)
         self.execute(command)
     def read(self,*args,**kwargs):
@@ -44,8 +44,8 @@ class AddressModel(Base):
 addressModelInstance = AddressModel()
 
 
-def createAddress(streetName,buildingNo,apartmentNo,localityName,City,PostCode):
-    addressModelInstance.insert(streetName,buildingNo,apartmentNo,localityName,City,PostCode)
+def createAddress(streetName, buildingNo, apartmentNo, localityName, City, PostCode):
+    addressModelInstance.insert(streetName, buildingNo, apartmentNo, localityName, City, PostCode)
 
     return True
 
@@ -69,7 +69,7 @@ def getAllAddresses():
 
 def updateAddres(id, streetName,buildingNo,apartmentNo,localityName,City,postcode):
     command = """
-        UPDATE  ADDRESSES SET street_name = '{}',  building_no ='{}', apartment_no='{}',locality_name='{}',city='{}',postcode='{}' where address_id = {}
+        UPDATE  ADDRESSES SET street_name = '{}',  building_no ='{}', apartment_no='{}',locality_name='{}',city='{}',postcode = '{}' where address_id = {}
         """.format(streetName, buildingNo, apartmentNo, localityName,City,postcode,id)
 
     return addressModelInstance.execute(command)
@@ -78,4 +78,12 @@ def updateAddres(id, streetName,buildingNo,apartmentNo,localityName,City,postcod
 def deleteAddress(id):
     command= """
     DELETE FROM ADDRESSES WHERE address_id= {}""".format(id)
+    return addressModelInstance.execute(command)
+
+def createAddressTable():
+    return addressModelInstance.create()
+
+def drop():
+    command = """
+        DELETE FROM ADDRESSES"""
     return addressModelInstance.execute(command)

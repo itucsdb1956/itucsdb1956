@@ -17,13 +17,14 @@
                             </div>
                             <ul class="nav navbar-nav">
                                     <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
-                                    <li><a href="{{ url_for('about') }}">Customer</a></li>
-                                    <li><a href="{{ url_for('customer./') }}">Customer</a></li>
-                                    <li><a href ="{{url_for('firm./')}}">Firm</a></li>
-                                    <li><a href ="{{url_for('order./')}}">Shopping Card</a></li>
-                                    <li><a href = "{{url_for('product./')}}"></a></li>
+                                    <li><a href="{{ url_for('about') }}">About</a></li>
+                                    <li><a href="{{ url_for('user.profile') }}">User Profile</a></li>
+                                    <li><a href ="{{url_for('order.getAllOrderEnd')}}">Shopping Card</a></li>
+                                    <li><a href = "{{url_for('product.getAllProductEnd')}}">Product</a></li>
                             </ul>
-
+                            <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                            </ul>
                         </div>
                  </nav>
     {% block content %}{% endblock %}

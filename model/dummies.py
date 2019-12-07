@@ -1,73 +1,84 @@
 
-from model.address import AddressModel
-from model.product import ProductModel
-from model.customer import CustomerModel
-from model.firm import FirmModel
-from model.user import UserModel
-from model.order import OrderModel
+from model.address import *
+from model.product import *
+from model.customer import *
+from model.firm import *
+from model.user import *
+from model.order import *
 
 
+addressInstance = AddressModel()
+productInstance = ProductModel()
+customerInstance = CustomerModel()
+firmInstance = FirmModel()
+userInstance = UserModel()
+orderInstance = OrderModel()
 
 def DeleteAllTable():
 
-    AddressModel().drop()
-    ProductModel().drop()
-    CustomerModel().drop()
-    FirmModel().drop()
-    UserModel().drop()
     OrderModel().drop()
+    ProductModel().drop()
+    FirmModel().drop()
+    CustomerModel().drop()
+    addressInstance.drop()
+    UserModel().drop()
+
+
+
+
+
 
 def CreateAllTable():
-    AddressModel().create()
-    ProductModel().create()
-    CustomerModel().create()
-    FirmModel().create()
-    UserModel().create()
-    OrderModel().create()
+    createAddressTable()
+    createUserTable()
+    createCustomerTable()
+    createFirmTable()
+    createProductTable()
+    createOrderTable()
 
 #if user type==0 then it is type of customer otherwise "1" it is type of firm
 def InsertUser():
 
-    UserModel().insert("testcustomer", "1234", "testcustomer@mail.com", 0)
-    UserModel().insert("testfirm", "1234", "testfirm@mail.com", 1)
+    create_user("testcustomer", "1234", "testcustomer@mail.com", 0)
+    create_user("testfirm", "1234", "testfirm@mail.com", 1)
 
-    UserModel().insert("testcustomer1", "1234", "testcustomer1@mail.com", 0)
-    UserModel().insert("testfirm1", "1234", "testfirm1@mail.com",1)
+    create_user("testcustomer1", "1234", "testcustomer1@mail.com", 0)
+    create_user("testfirm1", "1234", "testfirm1@mail.com",1)
 
-    UserModel().insert("testcustomer2", "1234", "testcustomer2@mail.com", 0)
-    UserModel().insert("testfirm2", "1234", "testfirm2@mail.com",1)
+    create_user("testcustomer2", "1234", "testcustomer2@mail.com", 0)
+    create_user("testfirm2", "1234", "testfirm2@mail.com",1)
 
 
 def InsertAddress():
 
-    AddressModel().insert("Altınbasak", 9, "Maslak", "Istanbul", 20)
-    AddressModel().insert("Cicek", 2, "Ayazaga", "Istanbul", 21)
-    AddressModel().insert("Kagıt", 3, "Besiktas", "Istanbul", 24)
-    AddressModel().insert("Havuzbası", 4, "Uskudar", "Istanbul", 10)
+    createAddress("Altınbasak", 9, 10, "Maslak", "Istanbul", 2000)
+    createAddress("Cicek", 2, 11, "Ayazaga", "Istanbul", 2100)
+    createAddress("Kagıt", 3, 12, "Besiktas", "Istanbul", 1000)
+    createAddress("Havuzbası", 4, 13, "Uskudar", "Istanbul", 1000)
 
 def InsertFirm():
 
-    FirmModel().insert("Marmara", 1, 2, 21600000)
-    FirmModel().insert("Karadeniz", 2, 4, 21600001)
-    FirmModel().insert("Ege", 3, 6, 21600002)
+    createFirm("Marmara", 1, 2, 21600000)
+    createFirm("Karadeniz", 2, 4, 21600001)
+    createFirm("Ege", 3, 6, 21600002)
 
 def InsertCustomer():
 
-    CustomerModel().insert("testName", 1, 2160010, 1)
-    CustomerModel().insert("testName1", 2, 2160011, 3)
-    CustomerModel().insert("testName2", 3, 2160012, 5)
+    createCustomer("testName", 1, 2160010, 1)
+    createCustomer("testName1", 2, 2160011, 3)
+    createCustomer("testName2", 3, 2160012, 5)
 
 def InsertOrder():
 
-    OrderModel().insert(1, 1)
-    OrderModel().insert(2, 2)
-    OrderModel().insert(3, 3)
+    createOrder(1, 1)
+    createOrder(2, 2)
+    createOrder(3, 3)
 
 def InserProduct():
 
-    ProductModel().insert("Hamburger", 1, 10.0)
-    ProductModel().insert("Sandwich", 2, 25.0)
-    ProductModel().insert("Tost", 1, 5.0)
+    createProduct("Hamburger", 1, 10.0)
+    createProduct("Sandwich", 2, 25.0)
+    createProduct("Tost", 1, 5.0)
 
 def CreateStarter():
 
@@ -75,8 +86,9 @@ def CreateStarter():
     InsertAddress()
     InsertCustomer()
     InsertFirm()
-    InsertOrder()
     InserProduct()
+    InsertOrder()
+
 
 
 

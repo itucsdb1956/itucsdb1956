@@ -29,4 +29,3 @@ def profile(*args, **kwargs):
     It renders profile page which contains some redirections for operations
     """
     return render_template("user/profile.html", **kwargs)
-

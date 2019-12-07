@@ -13,11 +13,11 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-     "CREATE TABLE IF NOT EXISTS ENES(address_id serial PRIMARY KEY) ",
-    "INSERT INTO ENES  VALUES (234)",
+     "CREATE TABLE IF NOT EXISTS TEST(address_id serial PRIMARY KEY) ",
+    "INSERT INTO TEST  VALUES (43)",
 
 ]
-showDB = "SELECT * FROM ENES"
+showDB = "SELECT * FROM TEST"
 
 def execute(url, query):
     res = None

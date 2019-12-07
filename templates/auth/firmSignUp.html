@@ -6,21 +6,21 @@
 
 
 <h3>FIRM REGISTRATION FORM</h3>
-<form>
+<form id="Login" action="{{ url_for('auth.firmSignUp') }}" method="POST">
 
 <table align="center" cellpadding = "10">
 
 <!----- Email ---------------------------------------------------------->
     <tr>
         <td>EMAIL</td>
-        <td><input type="text" name="Email" maxlength="30" />
+        <td><input type="text" name="email" maxlength="30" />
         (max 30 characters a-z and A-Z)
         </td>
     </tr>
 <!----- Password ---------------------------------------------------------->
     <tr>
         <td>PASSWORD</td>
-        <td><input type="password" name="Password" minlength="4" maxlength="10" />
+        <td><input type="password" name="password" minlength="4" maxlength="10" />
         (min 4 characters a-z and A-Z -- max 10 characters a-z and A-Z)
         </td>
     </tr>
@@ -61,7 +61,7 @@
 <!----- Building ---------------------------------------------------------->
     <tr>
         <td>BUILDING</td>
-        <td><input type="number" name="Building" max="3" />
+        <td><input type="number" name="Building" min="1" max="999" />
         (max 3 digit number)
         </td>
     </tr>
@@ -69,7 +69,7 @@
 <!----- Apartment ---------------------------------------------------------->
     <tr>
         <td>APARTMENT</td>
-        <td><input type="number" name="Apartment" max="3" />
+        <td><input type="number" name="Apartment" min="1" max="999" />
         (max 3 digit number)
         </td>
     </tr>
@@ -79,7 +79,7 @@
 <!----- City ---------------------------------------------------------->
     <tr>
         <td>CITY</td>
-        <td><input type="text" name="Locality" maxlength="30" placeholder="district/city"/>
+        <td><input type="text" name="City" maxlength="30" placeholder="district/city"/>
         (max 30 characters a-z and A-Z)
         </td>
     </tr>
@@ -87,7 +87,7 @@
 <!----- Post Code ---------------------------------------------------------->
     <tr>
         <td>POST CODE</td>
-        <td><input type="number" name="Pin_Code" max="6" />
+        <td><input type="number" name="Pin_Code" min="10000" max="99999" />
         (6 digit number)
         </td>
     </tr>

@@ -13,16 +13,14 @@ def login_required(f):
 
 
 def view(f):
+
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if "logged_in" in session:
-            return f(*args, logged_in=True, username=session["logged_in"][3], userid=session["logged_in"][0],  **kwargs)
+            return f(*args, logged_in=True, username=session["logged_in"][1], userid=session["logged_in"][0],  **kwargs)
         else:
-            print("here")
             return f(*args, **kwargs)
     return decorated_function
-
-
 def login_required_action(f):
 
     def decorated_function(*args, **kwargs):

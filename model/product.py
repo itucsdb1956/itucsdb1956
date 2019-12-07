@@ -15,15 +15,15 @@ class ProductModel(Base):
             supplier_id integer NOT NULL,
             product_price decimal NOT NULL,
             FOREIGN KEY (supplier_id) REFERENCES FIRMS(firm_id) ON UPDATE CASCADE
-            );
+            )
         """
 
         self.execute(command)
     def insert(self,*args,**kwargs):
         command = """
-        INSERT INTO PRODUCTS(product_name,supplier_id,product_price)
+        INSERT INTO PRODUCTS (product_name,supplier_id,product_price)
         VALUES ('{}', '{}' , '{}' )
-        );""".format(*args)
+        """.format(*args)
         self.execute(command)
 
     def update(self,*args,**kwargs):
@@ -64,4 +64,15 @@ def updateProduct(product_name,supplier_id,product_price,id):
     command ='''
         UPDATE PRODUCTS SET product_name='{}', supplier_id='{}', product_price='{}' where product_id='{}'
     '''.format(product_name,supplier_id,product_price,id)
+    return productModel.execute(command)
+def drop():
+    command = """
+        DELETE FROM PRODUCTS"""
+    return productModel.execute(command)
+
+def createProductTable():
+    return productModel.create()
+
+def getProductsBySupplierId(id):
+    command = """SELECT * FROM PRODUCTS WHERE supplier_id = {}""".format(id)
     return productModel.execute(command)

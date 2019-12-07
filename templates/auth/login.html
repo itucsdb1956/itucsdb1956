@@ -6,7 +6,7 @@
   <form  id="Login" action="{{ url_for('auth.login') }}" method="POST">
     <input type="text" id="email" title="email" placeholder="email" name="email" />
     <input type="password"  id="password" title="password" placeholder="password" name="password" />
-    <button type="submit" class="btn" onclick="auth.login()">Login</button>
+    <button type="submit" class="btn" onclick="auth.login">Login</button>
 
     <a class="forgot" href="#">Forgot Username?</a>
   </form>

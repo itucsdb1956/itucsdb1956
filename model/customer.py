@@ -26,7 +26,7 @@ class CustomerModel(Base):
         INSERT INTO CUSTOMERS(customer_fullname, customer_address_id,customer_phone_number,
         customer_user_id)
         VALUES ('{}','{}','{}','{}')
-        );""".format(*args)
+        """.format(*args)
         self.execute(command)
     def update(self,*args,**kwargs):
 
@@ -69,9 +69,17 @@ def deleteCustomerById(id):
     return customerModel.execute(command)
 
 
-def updateCustomerById(id,customer_fullname,customer_address_id,customer_phone_number,customer_user_id):
+def updateCustomerById(id, customer_fullname,customer_address_id,customer_phone_number,customer_user_id):
     command = """  
     UPDATE CUSTOMERS SET customer_id='{}', customer_full_name='{}', customer_address_id='{}', customer_phone_number='{}', customer_user_id='{}'
     """.format(id,customer_fullname,customer_address_id,customer_phone_number,customer_user_id)
 
     return customerModel.execute(command)
+def drop():
+    command = """
+        DELETE FROM CUSTOMERS"""
+    return customerModel.execute(command)
+
+
+def createCustomerTable():
+    return customerModel.create()

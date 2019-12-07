@@ -31,6 +31,7 @@ def getCustomerEmailPasswordEnd( *args, **kwargs):
 
 @customer.route("/<id>", methods = ["GET"])
 @view
+@login_required
 def getCustomerByIdEnd(id ,*args ,**kwargs):
 
     customerById = getCustomerById(id)

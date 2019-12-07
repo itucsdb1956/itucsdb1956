@@ -13,6 +13,7 @@ def init():
     CreateAllTable()
     CreateStarter()
 
+
     return redirect(url_for('home'))
 
 

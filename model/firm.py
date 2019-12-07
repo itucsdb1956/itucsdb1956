@@ -16,8 +16,8 @@ class FirmModel(Base):
             firm_user_id integer NOT NULL,
             firm_phone_number integer NOT NULL,
             FOREIGN KEY (firm_address_id) REFERENCES ADDRESSES(address_id) ON UPDATE CASCADE,          
-            FOREIGN KEY (firm_user_id) REFERENCES USERS(user_id) ON UPDATE CASCADE,
-            );
+            FOREIGN KEY (firm_user_id) REFERENCES USERS(user_id) ON UPDATE CASCADE
+            )
         """
         self.execute(command)
     def insert(self,*args,**kwargs):
@@ -25,7 +25,7 @@ class FirmModel(Base):
         INSERT INTO FIRMS(firm_name, firm_address_id,
         firm_user_id,firm_phone_number)
         VALUES ('{}','{}','{}','{}')
-        );""".format(*args)
+        """.format(*args)
         self.execute(command)
     def update(self,*args,**kwargs):
 
@@ -41,7 +41,7 @@ firmModel = FirmModel()
 def createFirm(firm_name,firm_address_id,firm_user_id,firm_phone_number):
 
     firmModel.insert(firm_name, firm_address_id, firm_user_id, firm_phone_number)
-    return
+    return True
 
 def getAllFirm():
     command = """SELECT * FROM FIRMS"""
@@ -71,3 +71,11 @@ def updateFirmById(id,firm_name ,firm_address_id ,firm_user_id ,firm_phone_numbe
     """.format(id, firm_name, firm_address_id, firm_user_id, firm_phone_number)
 
     return firmModel.execute(command)
+
+def drop():
+    command = """
+        DELETE FROM FIRMS"""
+    return firmModel.execute(command)
+
+def createFirmTable():
+    return firmModel.create()

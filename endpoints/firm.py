@@ -6,7 +6,7 @@ from endpoints.utils import  login_required ,view ,login_required_action
 
 from model.firm import *
 
-firm = Blueprint ('firms' ,__name__, url_prefix='/firms')
+firm = Blueprint ('firm' ,__name__, url_prefix='/firm')
 
 @firm.route("/" ,methods=["GET"])
 @view

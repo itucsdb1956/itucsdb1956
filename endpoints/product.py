@@ -10,10 +10,20 @@ product = Blueprint('product', __name__, url_prefix='/product')
 @product.route("/",methods = ["GET"])
 @view
 def getAllProductEnd(*args, **kwargs):
-    product =  getAllProduct()
+
+
+    if session["logged_in"][3] == 1:
+        id = session["logged_in"][0]
+        product = getProductsBySupplierId(id)
+        if product is None:
+            product = []
+        return render_template("product/products.html", products=product, **kwargs)
+
+    else:
+        product = getAllProduct()
     if product is None:
         product = []
-    return render_template("product/products.html", products=product,**kwargs)
+    return render_template("product/products.html", products=product, **kwargs)
 
 
 @product.route("/<id>", methods=["GET"])

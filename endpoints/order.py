@@ -6,7 +6,7 @@ from endpoints.utils import  login_required ,view ,login_required_action
 
 from model.order import *
 
-order = Blueprint ('orders' ,__name__, url_prefix='/orders')
+order = Blueprint ('order' ,__name__, url_prefix='/order')
 
 @order.route("/", methods=["GET"])
 @view
