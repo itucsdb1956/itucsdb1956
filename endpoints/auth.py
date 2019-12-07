@@ -2,7 +2,9 @@ from flask import Blueprint
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 
 from endpoints.utils import *
-from model.user import get_user, create_user
+from model.user import get_user, create_user,getUserId
+from model.address import createAddress, getAddressId
+from model.customer import createCustomer
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -12,7 +14,12 @@ def login():
         if "logged_in" in session:
             return redirect(url_for("user.feed"))
         return render_template("auth/login.html")
+
+
+
+    print("login")
     user = get_user(request.form["email"], request.form["password"])
+    print(request.form["email"], request.form["password"])
     if user is not None:
         session["logged_in"] = user
         return redirect(user.feed)
@@ -43,8 +50,28 @@ def signUp(*args, **kwargs):
     usertype = 0
     email    = request.form["email"]
 
+    fullname  = request.form["Full_Name"]
+    phone     = request.form["Mobile_Number"]
+    locality  = request.form["Locality"]
+    street    = request.form["Street"]
+    building  = request.form["Building"]
+    apartment = request.form["Apartment"]
+    city      = request.form["City"]
+    postcode  = request.form["Pin_Code"]
+    credit    = request.form["Credit_Card"]
+    country   = request.form["Country"]
 
-    NewUser = create_user(username,password,email,usertype)
+
+    NewAddress  = createAddress(street,building,apartment,locality,city,postcode)
+    print(NewAddress)
+    adressid    =  getAddressId(street,building,apartment,locality,city,postcode)
+
+    NewUser     = create_user(username, password, email, usertype)
+    print(NewUser)
+    userid = getUserId(username, password, email, usertype)
+
+    NewCustomer = createCustomer(fullname, adressid, phone, userid)
+    print(NewCustomer)
 
     if NewUser is None:
         return render_template("auth/signUp.html", msg="Record process is not done.", **kwargs)

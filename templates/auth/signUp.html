@@ -15,7 +15,14 @@
 <!----- Email ---------------------------------------------------------->
     <tr>
         <td>EMAIL</td>
-        <td><input type="text" name="Email" maxlength="30" />
+        <td><input type="text" name="email" maxlength="30" />
+        (max 30 characters a-z and A-Z)
+        </td>
+    </tr>
+    <!----- USER NAME ---------------------------------------------------------->
+    <tr>
+        <td>USER NAME</td>
+        <td><input type="text" name="username" maxlength="30" />
         (max 30 characters a-z and A-Z)
         </td>
     </tr>
@@ -64,7 +71,7 @@
 <!----- Building ---------------------------------------------------------->
     <tr>
         <td>BUILDING</td>
-        <td><input type="number" name="Building" max="3" />
+        <td><input type="number" name="Building" min="1" max="999" />
         (max 3 digit number)
         </td>
     </tr>
@@ -72,7 +79,7 @@
 <!----- Apartment ---------------------------------------------------------->
     <tr>
         <td>APARTMENT</td>
-        <td><input type="number" name="Apartment" max="3" />
+        <td><input type="number" name="Apartment" min="1" max="999" />
         (max 3 digit number)
         </td>
     </tr>
@@ -80,7 +87,7 @@
 <!----- City ---------------------------------------------------------->
     <tr>
         <td>CITY</td>
-        <td><input type="text" name="Locality" maxlength="30" placeholder="district/city"/>
+        <td><input type="text" name="City" maxlength="30" placeholder="district/city"/>
         (max 30 characters a-z and A-Z)
         </td>
     </tr>
@@ -88,7 +95,7 @@
 <!----- Post Code ---------------------------------------------------------->
     <tr>
         <td>POST CODE</td>
-        <td><input type="number" name="Pin_Code" min="4" max="6" />
+        <td><input type="number" name="Pin_Code" min="10000" max="99999" />
         (6 digit number)
         </td>
     </tr>
@@ -114,7 +121,7 @@
     </tr>
 </table>
 
-</>
+</form>
 
 
 

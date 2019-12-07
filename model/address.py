@@ -46,7 +46,8 @@ addressModelInstance = AddressModel()
 
 def createAddress(streetName,buildingNo,apartmentNo,localityName,City,PostCode):
     addressModelInstance.insert(streetName,buildingNo,apartmentNo,localityName,City,PostCode)
-    return
+
+    return True
 
 def getAddressById(id):
     command="""
@@ -54,9 +55,13 @@ def getAddressById(id):
     """.format(id)
     return addressModelInstance.execute(command)
 
-
+def getAddressId(streetName, buildingNo, apartmentNo, localityName, City, postcode):
+    command = """
+            SELECT address_id  ADDRESSES where street_name = '{}',  building_no ='{}', apartment_no='{}',locality_name='{}',city='{}',postcode='{}' 
+            """.format(streetName, buildingNo, apartmentNo, localityName, City, postcode)
+    return addressModelInstance.execute(command)
 def getAllAddresses():
-    command="""
+    command = """
     SELECT * FROM ADDRESSES"""
     return addressModelInstance.execute(command)
 

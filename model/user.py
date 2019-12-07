@@ -16,7 +16,7 @@ class UserModel(Base):
         command = """
         CREATE TABLE USERS (
             user_id serial PRIMARY KEY,
-            username varchar(30) UNIQUE NOT NULL,
+            username varchar(30) UNIQUE ,
             password varchar(16) NOT NULL,
             usertype integer NOT NULL,
             email varchar(30) UNIQUE NOT NULL,
@@ -55,7 +55,11 @@ def create_user(username, password, email, usertype):
     user = get_user(email, password)
     return user
 
-
+def getUserId(username, password, email, usertype):
+    command = """
+            SELECT user_id  ADDRESSES where username = '{}',  password ='{}', email='{}',usertype='{}'
+            """.format(username, password, email, usertype)
+    return userModel.execute(command)
 def get_user(email, password):
     command = """
     SELECT * FROM USERS WHERE email = '{}' and password = '{}'

@@ -13,9 +13,28 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-    "CREATE TABLE IF NOT EXISTS DUMMY (NUM INTEGER)",
-    "INSERT INTO DUMMY VALUES (42)",
+     "CREATE TABLE IF NOT EXISTS ENES(address_id serial PRIMARY KEY) ",
+    "INSERT INTO ENES  VALUES (234)",
+
 ]
+showDB = "SELECT * FROM ENES"
+
+def execute(url, query):
+    res = None
+    if url is None:
+        return None
+    with dbapi2.connect(url) as connection:
+        cursor = connection.cursor()
+        try:
+            cursor.execute(query)
+
+            res = cursor.fetchall()
+            print(res)
+            cursor.close()
+        except dbapi2.Error as e:
+            print(f"Query was \n {query} \n error{str(e)}")
+            cursor.close()
+    return None if res is not None and len(res) == 0 else res
 
 
 def initialize(url):
@@ -23,15 +42,18 @@ def initialize(url):
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
             cursor.execute(statement)
+
         cursor.close()
 
 
 if __name__ == "__main__":
-    url = os.getenv("DATABASE_URL")
+    url = "postgres://postgres:docker@localhost:5432/postgres"
     if url is None:
-        print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
+        print("Usage: DATABASE_URL=url python dbinit.py", file= sys.stderr)
         sys.exit(1)
     initialize(url)
+    execute(url, showDB)
+
 
 
 

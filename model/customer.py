@@ -41,7 +41,7 @@ customerModel = CustomerModel()
 
 def createCustomer(customer_fullname,customer_address_id,customer_phone_number,customer_user_id):
     customerModel.insert(customer_fullname,customer_address_id,customer_phone_number,customer_user_id)
-    return
+    return True
 def getAllCustomer():
     command = """
     SELECT * FROM CUSTOMERS"""
