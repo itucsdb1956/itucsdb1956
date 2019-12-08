@@ -69,10 +69,10 @@ def deleteCustomerById(id):
     return customerModel.execute(command)
 
 
-def updateCustomerById(id, customer_fullname,customer_address_id,customer_phone_number,customer_user_id):
+def updateCustomerById(id, customer_fullname, customer_address_id, customer_phone_number, customer_user_id):
     command = """  
     UPDATE CUSTOMERS SET customer_id='{}', customer_full_name='{}', customer_address_id='{}', customer_phone_number='{}', customer_user_id='{}'
-    """.format(id,customer_fullname,customer_address_id,customer_phone_number,customer_user_id)
+    """.format(id, customer_fullname, customer_address_id, customer_phone_number, customer_user_id)
 
     return customerModel.execute(command)
 def drop():
@@ -83,3 +83,8 @@ def drop():
 
 def createCustomerTable():
     return customerModel.create()
+
+def getCustomerByUserId(id):
+    command = """
+    SELECT * FROM CUSTOMERS WHERE customer_user_id ='{}' """.format(id)
+    return customerModel.execute(command)

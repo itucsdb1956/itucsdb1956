@@ -4,6 +4,7 @@ import datetime
 from endpoints.utils import login_required, view, login_required_action
 
 from model.product import *
+from model.firm import *
 
 product = Blueprint('product', __name__, url_prefix='/product')
 
@@ -14,10 +15,12 @@ def getAllProductEnd(*args, **kwargs):
 
     if session["logged_in"][3] == 1:
         id = session["logged_in"][0]
-        product = getProductsBySupplierId(id)
+        print(id)
+        firm = getFirmByUserId(id)
+        product = getProductsBySupplierId(firm[0][0])
         if product is None:
             product = []
-        return render_template("product/products.html", products=product, **kwargs)
+        return render_template("product/firmproducts.html", products=product, **kwargs)
 
     else:
         product = getAllProduct()
@@ -43,12 +46,12 @@ def createProductEnd(*args,**kwargs):
     if request.method == "GET":
         return render_template("product/createProduct.html", **kwargs)
 
-    product_name  = request.form["product_name"]
-    supplier_id  = request.form["supplier_id"]
-    product_price = request.form["product_price"]
+    product_name  = request.form["productname"]
+    supplier  = getFirmByUserId( session["logged_in"][0])
 
+    product_price = request.form["price"]
+    createProduct(product_name, supplier[0][0], product_price)
 
-    createProduct(product_name,supplier_id,product_price)
     return redirect(url_for("product.getAllProductEnd"))
 
 @product.route("/delete/<id>",methods =["GET","POST"])
@@ -58,23 +61,30 @@ def deleteProductByIdEnd(id, *args,**kwargs):
     deleteProduct(id)
     return (url_for("product.getAllProductEnd"))
 
-@product.route("/update/<id>",methods = ["GET","POST"])
+@product.route("/delete/", methods =["GET","POST"])
 @login_required
 @view
-def updateProductByIdEnd(id,*args,**kwargs):
-    product = getProductListById(id)
+def deleteProductByNameEnd( *args, **kwargs):
     if request.method == "GET":
-        if product is None:
-            redirect(url_for("user.feed"))
-        else:
-            return render_template("product/updateProduct.html", products=product[0], **kwargs)
+        return render_template("product/deleteproducts.html", **kwargs)
+    name = request.form["productname"]
+    supplier  = getFirmByUserId( session["logged_in"][0])
+
+    product = deleteProductByName(name, supplier[0][0])
+
+    return redirect(url_for("product.getAllProductEnd"))
 
 
-    product_name  = request.form["product_name"]
-    supplier_id  = request.form["supplier_id"]
-    product_price = request.form["product_price"]
+@product.route("/update", methods=["GET", "POST"])
+@login_required
+@view
+def updatePriceByNameEnd( *args, **kwargs):
+    if request.method == "GET":
+        return render_template("product/updateproducts.html", **kwargs)
+    price = request.form["price"]
+    name  = request.form["productname"]
+    supplier  = getFirmByUserId( session["logged_in"][0])
 
-    updateProduct(id,product_name,supplier_id,product_price)
+    product = updateProductByName(price, name, supplier[0][0])
 
-    return redirect(url_for('product.getAllProductEnd', id = id))
-
+    return redirect(url_for("product.getAllProductEnd"))

@@ -2,12 +2,11 @@
 {% block title %}Product{% endblock %}
 {% block content %}
 
-        <h3>CREATE ORDERS </h3>
+        <h3>CREATE PRODUCT </h3>
 
-<form  id="Login" action="{{ url_for('order.createOrderEnd') }}" method="POST">
+<form  id="Login" action="{{ url_for('product.updatePriceByNameEnd') }}" method="POST">
 
 <table align="center" cellpadding = "10">
-
 
 <!----- PRODUCT NAME ---------------------------------------------------------->
     <tr>
@@ -16,7 +15,7 @@
         (max 30 characters a-z and A-Z)
         </td>
     </tr>
-    <!----- PRICE---------------------------------------------------------->
+<!----- PRICE---------------------------------------------------------->
     <tr>
         <td>Product Price</td>
         <td><input type="number" name="price"  />
@@ -25,7 +24,7 @@
     </tr>
      <tr>
 
-         <td> <button type="submit" class="btn" onclick="order.createOrderEnd">Add Product</button>
+         <td> <button type="submit" class="btn" onclick="product.updatePriceByNameEnd">Update Product</button>
          </td>
      </tr>
 

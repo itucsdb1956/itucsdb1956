@@ -57,7 +57,7 @@ def create_user(username, password, email, usertype):
 
 def getUserId(username, password, email, usertype):
     command = """
-            SELECT user_id  ADDRESSES where username = '{}',  password ='{}', email='{}',usertype='{}'
+            SELECT user_id FROM USERS WHERE username = '{}' AND password ='{}' AND email='{}' AND usertype ='{}'
             """.format(username, password, email, usertype)
     return userModel.execute(command)
 def get_user(email, password):

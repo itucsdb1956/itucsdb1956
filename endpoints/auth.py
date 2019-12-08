@@ -72,7 +72,7 @@ def signUp(*args, **kwargs):
     print(NewUser)
     userid = getUserId(username, password, email, usertype)
 
-    NewCustomer = createCustomer(fullname, adressid, phone, userid)
+    NewCustomer = createCustomer(fullname, adressid[0][0], phone, userid[0][0])
     print(NewCustomer)
 
     if NewUser is None:
@@ -115,7 +115,7 @@ def firmSignUp(*args, **kwargs):
     print(NewUser)
     userid = getUserId(firm, password, email, usertype)
 
-    NewFirm = createFirm(firm, adressid, userid, phone)
+    NewFirm = createFirm(firm, adressid[0][0], userid[0][0], phone)
 
     print(NewFirm)
     if NewUser is None:

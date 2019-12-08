@@ -79,3 +79,8 @@ def drop():
 
 def createFirmTable():
     return firmModel.create()
+
+def getFirmByUserId(id):
+
+    command ="""SELECT * FROM FIRMS WHERE firm_user_id ='{}' """.format(id)
+    return firmModel.execute(command)

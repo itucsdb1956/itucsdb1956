@@ -48,9 +48,11 @@ def getProductSupplierId(firmId):
     command = '''SELECT firm_name FROM PRODUCTS where supplier_id= {} '''.format(firmId)
     return productModel.execute(command)
 def getProductListById(id):
-    command = """SELECT * FROM PRODUCTS where product_id ={}""".format(id)
+    command = """SELECT * FROM PRODUCTS WHERE product_id ='{}'""".format(id)
     return productModel.execute(command)
-
+def deleteProductByName(name,id):
+    command = """DELETE FROM PRODUCTS WHERE product_name = '{}' and supplier_id = '{}'""".format(name, id)
+    return productModel.execute(command)
 def deleteProduct(id):
     command = """
        DELETE FROM PRODUCTS WHERE product_id={} 
@@ -74,5 +76,12 @@ def createProductTable():
     return productModel.create()
 
 def getProductsBySupplierId(id):
-    command = """SELECT * FROM PRODUCTS WHERE supplier_id = {}""".format(id)
+    command = """SELECT * FROM PRODUCTS WHERE supplier_id = '{}' """.format(id)
+    return productModel.execute(command)
+def updateProductByName(price, name, id):
+    command = """UPDATE PRODUCTS SET  product_price='{}' WHERE product_name='{}'and supplier_id = '{}'""".format(price, name, id)
+    return productModel.execute(command)
+
+def getProductsByNameAndPrice(name, price):
+    command = """SELECT * FROM PRODUCTS WHERE product_name ='{}' and  product_price= '{}'""".format(name, price)
     return productModel.execute(command)

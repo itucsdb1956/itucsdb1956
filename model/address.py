@@ -1,4 +1,3 @@
-
 from model.base import Base
 
 class AddressModel(Base):
@@ -34,7 +33,7 @@ class AddressModel(Base):
 
         #args ye bak
         command = """
-        DELETE FROM ADDRESSES where id = {}""".format(id)
+        DELETE FROM ADDRESSES where address_id = {}""".format(id)
         self.execute(command)
     def read(self,*args,**kwargs):
         command = """
@@ -50,14 +49,15 @@ def createAddress(streetName, buildingNo, apartmentNo, localityName, City, PostC
     return True
 
 def getAddressById(id):
-    command="""
-    SELECT address_id, street_name,building_no,apartment_no,locality_name,city FROM ADDRESSES WHERE id={}
+    command = """
+    SELECT address_id, street_name,building_no,apartment_no,locality_name,city FROM ADDRESSES WHERE address_id= '{}'
     """.format(id)
     return addressModelInstance.execute(command)
 
 def getAddressId(streetName, buildingNo, apartmentNo, localityName, City, postcode):
     command = """
-            SELECT address_id  ADDRESSES where street_name = '{}',  building_no ='{}', apartment_no='{}',locality_name='{}',city='{}',postcode='{}' 
+            SELECT address_id FROM  ADDRESSES WHERE street_name = '{}' AND
+              building_no ='{}'AND apartment_no='{}' AND locality_name='{}' AND city='{}' AND postcode='{}' 
             """.format(streetName, buildingNo, apartmentNo, localityName, City, postcode)
     return addressModelInstance.execute(command)
 def getAllAddresses():
@@ -69,8 +69,8 @@ def getAllAddresses():
 
 def updateAddres(id, streetName,buildingNo,apartmentNo,localityName,City,postcode):
     command = """
-        UPDATE  ADDRESSES SET street_name = '{}',  building_no ='{}', apartment_no='{}',locality_name='{}',city='{}',postcode = '{}' where address_id = {}
-        """.format(streetName, buildingNo, apartmentNo, localityName,City,postcode,id)
+        UPDATE  ADDRESSES SET street_name = '{}' , building_no ='{}', apartment_no='{}' , locality_name='{}' , city='{}' , postcode = '{}' where address_id = {}
+        """.format(streetName, buildingNo, apartmentNo, localityName,City,postcode, id)
 
     return addressModelInstance.execute(command)
 

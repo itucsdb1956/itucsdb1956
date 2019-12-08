@@ -38,8 +38,11 @@ class OrderModel(Base):
 orderModel = OrderModel()
 
 def createOrder(product_id,customer_order_id):
-    orderModel.insert(product_id, customer_order_id)
-    return
+    command = """
+            INSERT INTO ORDERS(product_id,customer_order_id)
+            VALUES ('{}','{}')
+            """.format(product_id, customer_order_id)
+    return orderModel.execute(command)
 def getAllOrder():
     command = """
     SELECT * FROM ORDERS"""
@@ -70,5 +73,9 @@ def createOrderTable():
     return orderModel.create()
 
 
-
-
+def getOrdersByCustomerId(id):
+    command = """SELECT * FROM ORDERS WHERE customer_order_id ='{}'""".format(id)
+    return orderModel.execute(command)
+def getProductIds(id):
+    command = """SELECT product_id FROM ORDERS WHERE customer_order_id ='{}'""".format(id)
+    return orderModel.execute(command)
