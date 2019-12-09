@@ -20,29 +20,13 @@ INIT_STATEMENTS = [
 showDB = "SELECT * FROM TEST"
 purl = "postgres://postgres:docker@localhost:5432/postgres"
 
-def execute(url, query):
-    res = None
-    if url is None:
-        return None
-    with dbapi2.connect(url) as connection:
-        cursor = connection.cursor()
-        try:
-            cursor.execute(query)
-
-            res = cursor.fetchall()
-            print(res)
-            cursor.close()
-        except dbapi2.Error as e:
-            print(f"Query was \n {query} \n error{str(e)}")
-            cursor.close()
-    return None if res is not None and len(res) == 0 else res
 
 
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
-        for statement in INIT_STATEMENTS:
-            cursor.execute(statement)
+        
+        cursor.execute(INIT_STATEMENTS[0])
 
         cursor.close()
 
