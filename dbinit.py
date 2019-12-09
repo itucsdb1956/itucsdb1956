@@ -18,6 +18,7 @@ INIT_STATEMENTS = [
 
 ]
 showDB = "SELECT * FROM TEST"
+purl = "postgres://postgres:docker@localhost:5432/postgres"
 
 def execute(url, query):
     res = None
@@ -47,7 +48,7 @@ def initialize(url):
 
 
 if __name__ == "__main__":
-    url = "postgres://postgres:docker@localhost:5432/postgres"
+    url = os.getenv("DATABASE_URL")
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file= sys.stderr)
         sys.exit(1)
