@@ -1,11 +1,4 @@
 
-from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
-from flask import Blueprint
-from server import app
-
-from endpoints.utils import login_required, view
-from model.dummies import *
-
 import os
 import sys
 
