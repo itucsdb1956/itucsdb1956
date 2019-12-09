@@ -1,15 +1,13 @@
 Welcome to itucsdbNN's documentation!
 =====================================
 
-:Team: Team Name
+:Team: EATER
 
 :Members:
 
-   * Member 1
-   * Member 2
-   * Member 3
-   * Member 4
-   * Member 5
+   * Bunyamin YASAR
+   * Cihat BOSTANCI
+
 
 **project description goes here (a few paragraphs)**
 
