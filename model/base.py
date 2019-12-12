@@ -6,8 +6,8 @@ import psycopg2 as dbapi2
 
 class Base(ABC):
     def __init__(self):
-        #self.connection_url = os.getenv("DATABASE_URL")
-        self.connection_url = "postgres://postgres:docker@localhost:5432/postgres"
+        self.connection_url = os.getenv("DATABASE_URL")
+        #self.connection_url = "postgres://postgres:docker@localhost:5432/postgres"
 
 
     @abstractmethod
