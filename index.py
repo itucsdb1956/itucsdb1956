@@ -35,5 +35,9 @@ def home(*args, **kwargs):
 @app.route("/about", methods=["GET"])
 @view
 def about(*args, **kwargs):
+    if session.get("logged_in") is not None:
+        print("logged")
+        return render_template("loginAbout.html")
 
-        return render_template("about.html", **kwargs)
+    else:
+        return render_template("about.html")

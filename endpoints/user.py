@@ -50,7 +50,7 @@ def profile(*args, **kwargs):
         customername = getCustomerByUserId(session["logged_in"][0])
         print(customername)
         if customername is None:
-            customername =[]
+            customername = []
             return render_template("user/customerprofile.html", products=[], firmname=[], address=[], **kwargs)
         else:
             address = getAddressById(customername[0][2])
@@ -59,7 +59,7 @@ def profile(*args, **kwargs):
             orders = getOrdersByCustomerId(customername[0][0])
             if orders is None:
                 orders = []
-                return render_template("user/customerprofile.html", orders=[], customername=customername,
+                return render_template("user/customerprofile.html", orders=[], customername=customername[0][1],
                                        address=address, **kwargs)
 
             products  = getProductListById(orders[0][1])

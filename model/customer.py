@@ -13,7 +13,7 @@ class CustomerModel(Base):
             customer_id serial PRIMARY KEY,
             customer_fullname varchar(50) NOT NULL,
             customer_address_id integer NOT NULL,
-            customer_phone_number integer NOT NULL,
+            customer_phone_number varchar(12) NOT NULL,
             customer_user_id integer NOT NULL,
             FOREIGN KEY (customer_address_id) REFERENCES ADDRESSES(address_id) ON UPDATE CASCADE,
             FOREIGN KEY (customer_user_id) REFERENCES USERS(user_id) ON UPDATE CASCADE

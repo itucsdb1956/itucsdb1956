@@ -58,9 +58,9 @@ def deleteOrderById(id):
        """.format(id)
     return orderModel.execute(command)
 
-def updateOrder(id,product_id,customer_order_id):
+def updateOrder(product_id,customer_order_id):
     command ="""
-    UPDATE ORDERS SET order_id='{}',product_id='{}',customer_order_id='{}'
+    UPDATE ORDERS SET product_id='{}' AND customer_order_id='{}'
     """.format(id,product_id,customer_order_id)
     return orderModel.execute(command)
 
@@ -78,4 +78,10 @@ def getOrdersByCustomerId(id):
     return orderModel.execute(command)
 def getProductIds(id):
     command = """SELECT product_id FROM ORDERS WHERE customer_order_id ='{}'""".format(id)
+    return orderModel.execute(command)
+
+def deleteOrder(product_id,customer_order_id):
+    command = """
+                DELETE FROM ORDERS WHERE product_id='{}' AND customer_order_id='{}'
+                """.format(product_id, customer_order_id)
     return orderModel.execute(command)

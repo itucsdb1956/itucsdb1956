@@ -14,7 +14,7 @@ class FirmModel(Base):
             firm_name varchar(50) NOT NULL,
             firm_address_id integer NOT NULL,
             firm_user_id integer NOT NULL,
-            firm_phone_number integer NOT NULL,
+            firm_phone_number varchar(12) NOT NULL,
             FOREIGN KEY (firm_address_id) REFERENCES ADDRESSES(address_id) ON UPDATE CASCADE,          
             FOREIGN KEY (firm_user_id) REFERENCES USERS(user_id) ON UPDATE CASCADE
             )

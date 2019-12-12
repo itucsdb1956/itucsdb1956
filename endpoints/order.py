@@ -61,39 +61,35 @@ def createOrderEnd(*args, **kwargs):
         customer_order_id = []
     if product_id is None:
         product_id = []
-    print(product_id[0][0], customer_order_id[0][0])
+        print("Non product")
+        return redirect(url_for("order.getAllOrderEnd"))
 
+    print(product_id[0][0], customer_order_id[0][0])
     createOrder(product_id[0][0], customer_order_id[0][0])
     return redirect(url_for("order.getAllOrderEnd"))
 
 
-@order.route("/delete/<id>" ,methods = ["GET" ,"POST"])
+@order.route("/delete" ,methods = ["GET" ,"POST"])
 @login_required
 @view
-def deleteOrderEnd(id ,*args ,**kwargs):
-    deleteOrderById(id)
-    return redirect(url_for("order.getAllOrderEnd"))
-
-
-@order.route("/update/<id>", methods =["GET" ,"POST"])
-@login_required
-@view
-def updateOrderEnd(id ,*args ,**kwargs):
-
-    order = getOrderListById(id)
+def deleteOrderEnd(*args ,**kwargs):
     if request.method == "GET":
-        if order is None:
-            redirect(url_for("user.feed"))
-        else:
-            return render_template("order/updateOrders.html", orders= order)
+        return render_template(("order/deleteOrder.html", *kwargs))
 
-    product_id = request.form["product_id"]
-    customer_order_id = request.form["customer_order_id"]
+    product_name = request.form["productname"]
+    product_price = request.form["price"]
 
+    customer_order_id = getCustomerByUserId(session["logged_in"][0])
+    product_id = getProductsByNameAndPrice(product_name, product_price)
 
-    updateOrder(id,product_id  ,customer_order_id )
+    if customer_order_id is None:
+        customer_order_id = []
+    if product_id is None:
+        product_id = []
+    else:
+        print(product_id[0][0], customer_order_id[0][0])
+        deleteOrder(product_id[0][0], customer_order_id[0][0])
 
-    return redirect(url_for('order.getOrderByIdEnd', id = id))
-
+    return redirect(url_for("order.getAllOrderEnd"))
 
 

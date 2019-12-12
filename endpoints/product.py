@@ -10,6 +10,7 @@ product = Blueprint('product', __name__, url_prefix='/product')
 
 @product.route("/",methods = ["GET"])
 @view
+@login_required
 def getAllProductEnd(*args, **kwargs):
 
 
@@ -36,7 +37,7 @@ def getProductByIdEnd(id,*args,**kwargs):
     if product is None:
         return redirect(url_for("user.feed"))
     else:
-        return render_template("product/products.html", products=product[0],**kwargs)
+        return render_template("product/products.html", products=product[0], **kwargs)
 
 @product.route("/create",methods = ["GET","POST"])
 @login_required
