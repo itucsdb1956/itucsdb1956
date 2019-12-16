@@ -1,16 +1,16 @@
-Welcome to itucsdbNN's documentation!
+Welcome to itucsdb1956's documentation!
 =====================================
 
 :Team: EATER
 
 :Members:
 
-   * Bunyamin YASAR
-   * Cihat BOSTANCI
+   * Bunyamin YASAR 150160541
+   * Cihat BOSTANCI 150160542
 
 
-**project description goes here (a few paragraphs)**
 
+In this project, we bring food companies and customers together. Companies publish their products on our website and customers choose the food. they add it to their orders.
 Contents:
 
 .. toctree::
