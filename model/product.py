@@ -26,7 +26,7 @@ class ProductModel(Base):
         """.format(*args)
         self.execute(command)
 
-    def update(self,*args,**kwargs):
+    def update(self, *args,  **kwargs):
 
         raise NotImplementedError
     def delete(self,id):

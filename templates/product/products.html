@@ -30,6 +30,26 @@
   {% endfor %}
 
   </tbody>
+    <tbody>
+     {% for dessert in desserts %}
+  <tr>
+    <td>{{dessert[1]}} </td>
+    <td> {{dessert[3]}} </td>
+  </tr>
+
+  {% endfor %}
+
+  </tbody>
+    <tbody>
+     {% for drink in drinks %}
+  <tr>
+    <td>{{drink[1]}} </td>
+    <td> {{drink[3]}} </td>
+  </tr>
+
+  {% endfor %}
+
+  </tbody>
 </table>
 </div>
 </div>

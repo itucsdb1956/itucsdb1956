@@ -5,6 +5,9 @@ from model.customer import *
 from model.firm import *
 from model.user import *
 from model.order import *
+from model.dessert import *
+from model.drink import  *
+
 
 
 addressInstance = AddressModel()
@@ -13,15 +16,21 @@ customerInstance = CustomerModel()
 firmInstance = FirmModel()
 userInstance = UserModel()
 orderInstance = OrderModel()
+dessertInstance = DessertModel()
+drinkInstance = DrinkModel()
 
 def DeleteAllTable():
 
     OrderModel().drop()
     ProductModel().drop()
+    DessertModel().drop()
+    DrinkModel().drop()
     FirmModel().drop()
     CustomerModel().drop()
-    addressInstance.drop()
+    AddressModel().drop()
     UserModel().drop()
+
+
 
 
 
@@ -34,7 +43,11 @@ def CreateAllTable():
     createCustomerTable()
     createFirmTable()
     createProductTable()
+    createDessertTable()
+    createDrinkTable()
     createOrderTable()
+
+
 
 #if user type==0 then it is type of customer otherwise "1" it is type of firm
 def InsertUser():
@@ -64,21 +77,35 @@ def InsertFirm():
 
 def InsertCustomer():
 
-    createCustomer("testName", 1, 2160010, 1)
-    createCustomer("testName1", 2, 2160011, 3)
-    createCustomer("testName2", 3, 2160012, 5)
+    createCustomer("Customer Test Name", 1, 2160010, 1)
+    createCustomer("Customer Test Name 2", 2, 2160011, 3)
+    createCustomer("Customer Test Name 3", 3, 2160012, 5)
 
 def InsertOrder():
 
-    createOrder(1, 1)
-    createOrder(2, 2)
-    createOrder(3, 3)
+    createOrder(1, 1, 1, 1)
+    createOrder(2, 2, 2, 2)
+    createOrder(3, 3, 3, 3)
+
 
 def InserProduct():
 
     createProduct("Hamburger", 1, 10.0)
     createProduct("Sandwich", 2, 25.0)
     createProduct("Tost", 1, 5.0)
+
+def InserDessert():
+
+    createDessert("CheeseCake", 1, 20.0)
+    createDessert("Cake", 2, 25.0)
+    createDessert("Baklava", 1, 100.0)
+
+
+def InserDrink():
+    createDrink("Cola", 1, 4.0)
+    createDrink("Sprite", 2, 5.0)
+    createDrink("Ayran", 1, 3.0)
+
 
 def CreateStarter():
 
@@ -87,7 +114,10 @@ def CreateStarter():
     InsertCustomer()
     InsertFirm()
     InserProduct()
+    InserDessert()
+    InserDrink()
     InsertOrder()
+
 
 
 

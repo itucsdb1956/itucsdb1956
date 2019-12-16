@@ -14,7 +14,7 @@ def getAddressesEnd(*args, **kwargs):
     address = getAllAddresses()
     if address is None:
         address = []
-    return render_template("address/address.html", addresses=address,**kwargs)
+    return render_template("address/address.html", addresses=address, **kwargs)
 
 
 @addresses.route("/<id>", methods=["GET"])
