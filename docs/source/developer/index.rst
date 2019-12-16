@@ -21,6 +21,12 @@ All tables are given in Figure 1.
 
 
      Figure 2 images tables E/R diagram
+     
+.. figure:: diagrams/ERDiagram.png
+   :scale: 20 %
+   :alt: map to buried treasure
+
+   This is the caption of the figure (a simple paragraph).     
 
 Table Distribution
 ^^^^^^^^^^^^^^^^^^^
