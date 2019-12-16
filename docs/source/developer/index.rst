@@ -14,7 +14,7 @@ E/R Diagram of Database
 All tables are given in Figure 1.
 
 .. figure:: ERDiagram.png
-   :scale: 50 %
+   :scale: 20 %
    :alt: map to buried treasure
 
    This is the caption of the figure (a simple paragraph).
