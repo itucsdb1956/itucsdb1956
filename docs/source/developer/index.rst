@@ -13,8 +13,8 @@ E/R Diagram of Database
 
 All tables are given in Figure 1.
 
-.. image:: ERDiagram.png
-     :scale: 75 %
+.. figure:: ERDiagram.png
+     :scale: 20 %
      :alt: All Tables
 
      Figure 1 - All Tables
