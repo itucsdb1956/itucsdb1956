@@ -13,13 +13,11 @@ E/R Diagram of Database
 
 All tables are given in Figure 1.
 
-.. figure:: diagrams/ERDiagram.png
-     :scale: 75 %
-     :alt:  tables E/R diagram
-     Figure 1 - All Tables
+.. figure:: ERDiagram.png
+   :scale: 50 %
+   :alt: map to buried treasure
 
- images tables E/R diagram given in Figure 2.
-
+   This is the caption of the figure (a simple paragraph).
 
 
      Figure 2 images tables E/R diagram
