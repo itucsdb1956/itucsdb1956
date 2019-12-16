@@ -13,7 +13,7 @@ E/R Diagram of Database
 
 All tables are given in Figure 1.
 
-.. figure:: images/databasedeneme.png
+.. figure:: images/ERDiagram.png
      :scale: 75 %
      :alt: All Tables
 
