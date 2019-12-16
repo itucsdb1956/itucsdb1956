@@ -22,7 +22,7 @@ All tables are given in Figure 1.
 
      Figure 2 images tables E/R diagram
      
-.. figure:: diagrams/ERDiagram.png
+.. figure:: diagrams/erdi.png
    :scale: 20 %
    :alt: map to buried treasure
 
