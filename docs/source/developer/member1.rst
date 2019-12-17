@@ -1,6 +1,17 @@
 Parts Implemented by Bunyamin YASAR
 ================================
 
+Table Distribution
+^^^^^^^^^^^^^^^^^^^
+
+:Bunyamin YASAR:
+
+   * ADDRESS
+   * PRODUCT   
+   * DESSERT
+   * DRINK
+
+I create 4 tables for this project.
 
 .. figure:: diagrams/address.png
    :scale: 20 %
