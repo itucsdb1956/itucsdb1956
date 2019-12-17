@@ -23,11 +23,13 @@ def getAllProductEnd(*args, **kwargs):
         product = getProductsBySupplierId(firm[0][0])
         drink = getDrinksBySupplierId(firm[0][0])
         dessert = getDessertsBySupplierId(firm[0][0])
-
+        if dessert is None:
+          dessert = []
+        if drink is None:
+            drink = []
         if product is None:
             product = []
-            dessert = []
-            drink = []
+
         return render_template("product/firmproducts.html", products=product, drinks=drink, desserts=dessert, **kwargs)
 
     else:
