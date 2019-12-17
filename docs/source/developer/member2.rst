@@ -29,16 +29,16 @@ Customer table is given in Figure 2.
 .. figure:: diagrams/customer.png
    :scale: 20 %
    :alt: map to buried treasure
- User table is given in Figure 3.
+User table is given in Figure 3.
 
 .. figure:: diagrams/User.png
-   :scale: 10 %
+   :scale: 20 %
    :alt: map to buried treasure
-  
-  Order table is given in Figure 4.
+ 
+Order table is given in Figure 4.
 
 .. figure:: diagrams/order.png
-   :scale: 10 %
+   :scale: 20 %
    :alt: map to buried treasure
    
    
