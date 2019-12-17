@@ -1,4 +1,4 @@
-Parts Implemented by Member Name
+Parts Implemented by Cihat Bostancı
 ================================
 
 This web application is developed with Python's Flask library.
